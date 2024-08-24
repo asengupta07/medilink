@@ -359,6 +359,53 @@ const DescriptionSchema = new mongoose.Schema({
     }
 });
 
+const MedicalInfoSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
+    blood_type: {
+        type: String,
+        required: true
+    },
+    allergies: {
+        type: ["String"],
+        default: []
+    },
+    current_medications: {
+        type: ["String"],
+        default: []
+    },
+    chronic_conditions: {
+        type: ["String"],
+        default: []
+    },
+    previous_surgeries: {
+        type: ["String"],
+        default: []
+    },
+    vaccination_records: {
+        type: ["String"],
+        default: []
+    },
+    family_medical_history: {
+        type: ["String"],
+        default: []
+    },
+    heart_disease: {
+        type: Boolean,
+        default: false
+    },
+    cancer: {
+        type: Boolean,
+        default: false
+    },
+    alcohol_drug_abuse: {
+        type: Boolean,
+        default: false
+    }    
+})
+
 export {
     UserSchema,
     RatingSchema,
@@ -373,5 +420,6 @@ export {
     ReviewSchema,
     MedicineSchema,
     FeatureSchema,
-    DescriptionSchema
+    DescriptionSchema,
+    MedicalInfoSchema
 }
