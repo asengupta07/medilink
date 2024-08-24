@@ -406,6 +406,76 @@ const MedicalInfoSchema = new mongoose.Schema({
     }    
 })
 
+const MedicationSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    dosage: {
+        type: String,
+        required: true
+    },
+    frequency: {
+        type: String,
+        required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
+})
+
+const exampleSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    }
+})
+
+const OrderSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
+    providerId: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    cart: [
+        {
+            medicineId: {
+                type: String,
+                required: true
+            },
+            name: {
+                type: String,
+                required: true
+            },
+            quantity: {
+                type: Number,
+                required: true
+            },
+            price: {
+                type: Number,
+                required: true
+            },
+            total: {
+                type: Number,
+                required: true
+            }
+        }
+    ]
+});
+
 export {
     UserSchema,
     RatingSchema,
@@ -421,5 +491,8 @@ export {
     MedicineSchema,
     FeatureSchema,
     DescriptionSchema,
-    MedicalInfoSchema
+    MedicalInfoSchema,
+    MedicationSchema,
+    exampleSchema,
+    OrderSchema
 }
