@@ -81,9 +81,128 @@ const DepartmentSchema = new mongoose.Schema({
     }
 });
 
+const UserInfoSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
+    dob: {
+        type: Date,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true,
+        enum: ['Male', 'Female', 'Other']
+    }
+});
+
+const UserContactSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    telephone: {
+        type: String,
+        required: false
+    },
+    address: {
+        type: String,
+        required: true
+    },
+})
+
+const UserEmergencyContactSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
+    emergencyContacts: [
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            relation: {
+                type: String,
+                required: true
+            },
+            phone: {
+                type: String,
+                required: true
+            },
+            email: {
+                type: String,
+                required: true
+            }
+        }
+    ]
+})
+
+const DoctorSchema = new mongoose.Schema({
+    name: { 
+        type: String, 
+        required: true 
+    },
+    specialization: { 
+        type: String, 
+        required: true 
+    },
+    providerId: { 
+        type: String, 
+        required: true 
+    },
+    rating: { 
+        type: Number, 
+        min: 0, 
+        max: 5, 
+        required: true 
+    },
+    fee: { 
+        type: Number, 
+        required: true 
+    },
+    timings: [{
+        day: { 
+            type: String, 
+            required: true 
+        },
+        startTime: { 
+            type: String, 
+            required: true 
+        },
+        endTime: { 
+            type: String, 
+            required: true 
+        },
+    }],
+    contactInfo: {
+        phone: String,
+        email: String,
+    },
+    experience: { 
+        type: Number, 
+        required: true 
+    },
+    education: [String],
+    languages: [String],
+    bio: String,
+    awards: [String],
+}, { 
+    timestamps: true 
+});
+
 export {
     UserSchema,
     RatingSchema,
     ProviderSchema,
-    DepartmentSchema
+    DepartmentSchema,
+    UserInfoSchema,
+    UserContactSchema,
+    UserEmergencyContactSchema,
+    DoctorSchema
 }
