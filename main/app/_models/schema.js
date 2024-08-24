@@ -305,6 +305,60 @@ const AppointmentSchema = new mongoose.Schema({
     }
 });
 
+const MedicineSchema = new mongoose.Schema({
+    providerId: {
+        type: String,
+        required: true,
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        enum: ["Allergy", "Pain Relief", "Digestive", "Antibiotics", "Vitamins and Supplements", "Antidepressants", "Antidiabetic"],
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    inStock: {
+        type: Boolean,
+        required: true
+    },
+    stock: {
+        type: Number,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    }
+})
+
+const FeatureSchema = new mongoose.Schema({
+    providerId: {
+        type: String,
+        required: true
+    },
+    features: {
+        type: [String],
+        required: true
+    },
+});
+
+const DescriptionSchema = new mongoose.Schema({
+    providerId: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true
+    }
+});
+
 export {
     UserSchema,
     RatingSchema,
@@ -316,5 +370,8 @@ export {
     DoctorSchema,
     DocReviewSchema,
     AppointmentSchema,
-    ReviewSchema
+    ReviewSchema,
+    MedicineSchema,
+    FeatureSchema,
+    DescriptionSchema
 }
