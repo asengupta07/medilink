@@ -9,7 +9,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import Header from "@/components/function/navbar"
 import Link from "next/link"
 import { useAuth } from "../_contexts/authContext"
-// import Loader2 from "@/components/function/load"
+import Loader2 from "@/components/function/load"
 
 export default function Dashboard() {
   const { token } = useAuth()
