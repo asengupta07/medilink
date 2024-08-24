@@ -70,8 +70,20 @@ const RatingSchema = new mongoose.Schema({
     }
 })
 
+const DepartmentSchema = new mongoose.Schema({
+    providerId: {
+        type: String,
+        required: true,
+    },
+    departments: {
+        type: [String],
+        required: true,
+    }
+});
+
 export {
     UserSchema,
     RatingSchema,
-    ProviderSchema
+    ProviderSchema,
+    DepartmentSchema
 }
