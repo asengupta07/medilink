@@ -136,6 +136,7 @@ export default function Appointment() {
           break;
         }
       }
+      availableSlots[day] = Array.from(new Set(availableSlots[day]));
     });
 
 
@@ -197,24 +198,25 @@ export default function Appointment() {
 
   const fetchDocData = async (token) => {
     try {
-      const res = await fetch("/api/getDoc", {
-        method: "POST",
-        headers: { Authorization: token },
-        body: JSON.stringify({ id: id })
-      });
-      if (!res.ok) throw new Error("Failed to fetch doctor data");
-      const data = await res.json();
-      setDocData(data);
-      setReviews(data.reviews);
-      const timings = convertTimingsToSlots(data.timings);
-      setAvailableSlots(timings);
-      setSelectedDay(Object.keys(timings)[0]);
-      setTimeSlots(timings[Object.keys(timings)[0]]);
+        const res = await fetch("/api/getDoc", {
+            method: "POST",
+            headers: { Authorization: token },
+            body: JSON.stringify({ id: id })
+        });
+        if (!res.ok) throw new Error("Failed to fetch doctor data");
+        const data = await res.json();
+        setDocData(data);
+        setReviews(data.reviews);
+        const timings = convertTimingsToSlots(data.timings);
+        setAvailableSlots(timings);
+        setSelectedDay(Object.keys(timings)[0]);
+        setTimeSlots(timings[Object.keys(timings)[0]]);
     }
     catch (err) {
-      console.log(err);
+        console.log(err);
     }
-  }
+}
+
 
   useEffect(() => {
     if (token) {
