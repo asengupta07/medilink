@@ -162,7 +162,7 @@ export default function DoctorsPage() {
                     <ClockIcon className="w-4 h-4 mr-1" />
                     <span>{doctor.availability.join(", ")}</span>
                   </div>
-                  <p className="text-lg font-bold text-center mb-4">${doctor.fee}</p>
+                  <p className="text-lg font-bold text-center mb-4">₹{doctor.fee}</p>
                   <Link href={`/appointment?id=${doctor.id}`}>
                   <Button className="w-full">Book Appointment</Button>
                   </Link>
