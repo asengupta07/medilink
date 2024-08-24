@@ -196,6 +196,29 @@ const DoctorSchema = new mongoose.Schema({
     timestamps: true 
 });
 
+const DocReviewSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
+    doctorId: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        required: true
+    },
+    review: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
+    }
+});
+
 export {
     UserSchema,
     RatingSchema,
@@ -204,5 +227,6 @@ export {
     UserInfoSchema,
     UserContactSchema,
     UserEmergencyContactSchema,
-    DoctorSchema
+    DoctorSchema,
+    DocReviewSchema
 }
