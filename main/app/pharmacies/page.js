@@ -22,10 +22,6 @@ export default function Pharmacies() {
     setIsMenuOpen((prevState) => !prevState)
   }
 
-  const handleSidebarToggle = () => {
-    setIsSidebarOpen((prevState) => !prevState)
-  }
-
   const handleSortChange = (value) => {
     setSortBy(value)
   }
@@ -102,9 +98,6 @@ export default function Pharmacies() {
     if (isMenuOpen) {
       setIsMenuOpen(false)
     }
-    if (isSidebarOpen) {
-      setIsSidebarOpen(false)
-    }
   }
 
   return (
@@ -163,10 +156,6 @@ export default function Pharmacies() {
               </CardDescription>
             </CardHeader>
             <CardFooter className="py-3 flex justify-between items-center">
-              <Button variant="outline" size="sm" className="lg:hidden h-8 gap-1 text-sm" onClick={handleSidebarToggle}>
-                <MenuIcon className="h-4 w-4" />
-                <span className="sr-only sm:not-sr-only">Menu</span>
-              </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" size="sm" className="h-8 gap-1 text-sm">
@@ -205,7 +194,7 @@ export default function Pharmacies() {
                       <TableRow className="hover:bg-muted/10" key={index}>
                         <TableCell>
                           <div className="font-medium">{pharmacy.name}</div>
-                          <div className="text-sm text-accent md:hidden">{pharmacy.address}</div>
+                          <div className="text-sm text-accent">{pharmacy.address}</div>
                           <div className="text-sm text-accent md:hidden">{pharmacy.type} | {pharmacy.distance} km</div>
                         </TableCell>
                         <TableCell className="hidden sm:table-cell">{pharmacy.type}</TableCell>
