@@ -197,9 +197,7 @@ export default function Allorderpage() {
                   <div className="text-2xl font-bold">{selectedOrder.id}</div>
                   <div className="text-muted-foreground">{selectedOrder.date}</div>
                 </div>
-                <Button size="icon" variant="ghost" onClick={handleCloseModal}>
-                  <XIcon className="h-5 w-5" />
-                </Button>
+              
               </div>
               <div className="grid gap-6">
                 <div className="grid gap-4">
