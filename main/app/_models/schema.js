@@ -219,6 +219,69 @@ const DocReviewSchema = new mongoose.Schema({
     }
 });
 
+const AppointmentSchema = new mongoose.Schema({
+    userId: {
+      type: String, 
+      required: true
+    },
+    isForSelf: {
+      type: Boolean, 
+      required: true
+    },
+    patientName: {
+      type: String, 
+      required: true
+    },
+    patientAge: {
+      type: String, 
+      required: true
+    },
+    patientGender: {
+      type: String, 
+      required: true
+    },
+    patientPhone: {
+      type: String, 
+      required: true
+    },
+    patientEmail: {
+      type: String, 
+      required: true
+    },
+    appointmentDay: {
+      type: String, 
+      required: true
+    },
+    appointmentTime: {
+      type: String, 
+      required: true
+    },
+    docId: {
+      type: String, 
+      required: true
+    },
+    presentingComplaints: {
+      type: String, 
+      required: true
+    },
+    history: {
+      type: String, 
+      required: true
+    },
+    clinicalFindings: {
+      type: String, 
+    },
+    medicalHistory: {
+      type: String,
+      default: ''
+    },
+    medicalConditions: [{
+      type: String
+    }]
+  }, { 
+    timestamps: true 
+  });
+
 export {
     UserSchema,
     RatingSchema,
@@ -228,5 +291,6 @@ export {
     UserContactSchema,
     UserEmergencyContactSchema,
     DoctorSchema,
-    DocReviewSchema
+    DocReviewSchema,
+    AppointmentSchema
 }
