@@ -64,11 +64,11 @@ export default function Dashboard() {
             longitude
           })
         });
-  
+
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
-  
+
         const data = await res.json();
         setServices(data);
       } catch (error) {
@@ -150,25 +150,28 @@ export default function Dashboard() {
       )}
       <div className='flex flex-1 overflow-hidden'>
         <aside className={`w-64 flex-shrink-0 overflow-y-auto bg-background p-6 ${isSidebarOpen ? 'block' : 'hidden'} lg:block`}>
-          <Link href="/pharmacies" prefetch={false}>
-            <Card className="h-full flex flex-col justify-between hover:scale-105 transition-all duration-500">
-              <CardHeader className="flex flex-col rounded-lg items-start bg-gradient-to-b from-primary to-background text-primary-foreground">
-                <CardTitle className="text-lg mb-2">Looking for medicines?</CardTitle>
-                <CardDescription className="text-foreground text-[0.85rem] leading-[1rem] text-justify">
-                  Find nearby pharmacies with ease! Discover stores stocked with the medicines you need. Stay connected to your local pharmacy network effortlessly. Explore now and ensure you have access to the medicines you rely on.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col items-center justify-center flex-grow">
-                <div className="h-40 w-full flex justify-center items-center mb-4">
-                  <img src="Medicines.png" className="max-h-full object-contain"
-                    width={170}
-                    height={170}
-                    alt="Hospital illustration"
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+          <Card className="h-full flex flex-col justify-between">
+            <CardHeader className="flex flex-col items-start bg-gradient-to-b from-primary to-background text-primary-foreground">
+              <CardTitle className="text-lg mb-2">Looking for medicines?</CardTitle>
+              <CardDescription className="text-foreground text-[0.8rem] leading-[1rem] text-justify">
+                Find nearby pharmacies with ease! Discover stores stocked with the medicines you need. Stay connected to your local pharmacy network effortlessly. Explore now and ensure you have access to the medicines you rely on.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col items-center pb-0 justify-center flex-grow">
+              <div className="h-40 w-full flex justify-center items-center mb-4">
+                <img src="Medicines.png" className="max-h-full object-contain"
+                  width={180}
+                  height={180}
+                  alt="Hospital illustration"
+                />
+              </div>
+            </CardContent>
+            <div className="p-4">
+              <Link href="/pharmacies" prefetch={false}>
+                <Button className="w-full">Explore!</Button>
+              </Link>
+            </div>
+          </Card>
         </aside>
         <main className="flex-1 overflow-hidden p-4">
           <Card className="h-full flex flex-col border-none shadow-[0_4px_6px_rgba(0,0,0,0.1),0_1px_3px_rgba(0,0,0,0.06)] shadow-slate-400 dark:shadow-slate-700">
@@ -235,47 +238,47 @@ export default function Dashboard() {
             <CardContent className="flex-1 overflow-hidden">
               <div className="h-full overflow-y-auto">
                 {isLoading ? (<Loader2 />)
-                :(
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-muted/20 hover:bg-muted/20">
-                      <TableHead className="font-bold text-muted-foreground">Name</TableHead>
-                      <TableHead className="font-bold text-muted-foreground hidden sm:table-cell">Type</TableHead>
-                      <TableHead className="font-bold text-muted-foreground hidden sm:table-cell">Rating</TableHead>
-                      <TableHead className="font-bold text-muted-foreground hidden md:table-cell">Distance</TableHead>
-                      <TableHead className="font-bold text-muted-foreground text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {filteredServices.map((service, index) => (
-                      <TableRow className="hover:bg-muted/10" key={index}>
-                        <TableCell>
-                          <div className="font-medium">{service.name}</div>
-                          <div className="text-sm text-accent">{service.address}</div>
-                          <div className="text-sm text-accent md:hidden">{service.type} | {service.distance} km</div>
-                        </TableCell>
-                        <TableCell className="hidden sm:table-cell">{service.type}</TableCell>
-                        <TableCell className="hidden sm:table-cell">
-                          <div className="flex items-center gap-1">
-                            {[...Array(5)].map((_, i) => (
-                              <StarIcon key={i} className={`h-4 w-4 ${i < service.rating ? "fill-primary" : ""}`} />
-                            ))}
-                          </div>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell">{service.distance} km</TableCell>
-                        <TableCell className="text-right">
-                          <Link href={`/hospital?Id=${service.id}`} prefetch={false}>
-                            <Button variant="outline" size="sm" className="h-7 gap-1 text-sm">
-                              <WaypointsIcon className="h-3.5 w-3.5" />
-                              View More
-                            </Button>
-                          </Link>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                )}
+                  : (
+                    <Table>
+                      <TableHeader>
+                        <TableRow className="bg-muted/20 hover:bg-muted/20">
+                          <TableHead className="font-bold text-muted-foreground">Name</TableHead>
+                          <TableHead className="font-bold text-muted-foreground hidden sm:table-cell">Type</TableHead>
+                          <TableHead className="font-bold text-muted-foreground hidden sm:table-cell">Rating</TableHead>
+                          <TableHead className="font-bold text-muted-foreground hidden md:table-cell">Distance</TableHead>
+                          <TableHead className="font-bold text-muted-foreground text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {filteredServices.map((service, index) => (
+                          <TableRow className="hover:bg-muted/10" key={index}>
+                            <TableCell>
+                              <div className="font-medium">{service.name}</div>
+                              <div className="text-sm text-accent">{service.address}</div>
+                              <div className="text-sm text-accent md:hidden">{service.type} | {service.distance} km</div>
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">{service.type}</TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              <div className="flex items-center gap-1">
+                                {[...Array(5)].map((_, i) => (
+                                  <StarIcon key={i} className={`h-4 w-4 ${i < service.rating ? "fill-primary" : ""}`} />
+                                ))}
+                              </div>
+                            </TableCell>
+                            <TableCell className="hidden md:table-cell">{service.distance} km</TableCell>
+                            <TableCell className="text-right">
+                              <Link href={`/hospital?Id=${service.id}`} prefetch={false}>
+                                <Button variant="outline" size="sm" className="h-7 gap-1 text-sm">
+                                  <WaypointsIcon className="h-3.5 w-3.5" />
+                                  View More
+                                </Button>
+                              </Link>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  )}
               </div>
             </CardContent>
           </Card>
