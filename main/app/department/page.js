@@ -140,7 +140,7 @@ export default function DoctorsPage() {
                 <CardContent className="p-6">
                   <div className="mb-4 flex justify-center">
                     <Image
-                      src={doctor.image}
+                      src="/landing3.jpeg"
                       alt={doctor.name}
                       width={150}
                       height={150}

@@ -145,7 +145,7 @@ export default function Searchmeds() {
     })
       .then((res) => {
         if (res.ok) {
-          alert("Mashallah!!! Great Success!!")
+          alert("Medicines booked successfully")
         }
       })
     handleCloseModal()
