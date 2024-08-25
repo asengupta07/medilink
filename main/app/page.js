@@ -9,7 +9,7 @@ import ThemeSwitcher from '@/components/theme/ThemeSwitcher'
 import Auth from '@/components/function/auth'
 import dynamic from "next/dynamic"
 import { useTheme } from 'next-themes'
-
+import Authprovide from '@/components/function/authprovide';
 const World = dynamic(() => import("@/components/ui/globe").then((m) => m.World), {
   ssr: false,
 })
@@ -660,6 +660,7 @@ export default function Landingpage() {
               </p>
               <div className="flex text-base sm:text-lg lg:justify-start justify-center" style={{ animationDelay: '0.4s' }}>
                 <button className='underline-animation' variant="outline">Learn More</button>
+                <Authprovide />
               </div>
             </div>
             <div className="mx-auto overflow-hidden rounded-xl object-cover h-64 sm:h-72 md:h-96 z-10" style={{ bottom: '-30px' }}>
