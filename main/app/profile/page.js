@@ -292,10 +292,46 @@ export default function Profile() {
             setShowFileInput(false);
         }
     };
-    const [profilePicture, setProfilePicture] = useState("/plaeholder-user.jpg")
-    const handleProfilePictureChange = (event) => {
-        setProfilePicture(URL.createObjectURL(event.target.files[0]))
-    }
+    const [imageUrl, setImageUrl] = useState('/placeholder-user.jpg'); 
+    const [uploading, setUploading] = useState(false);
+
+    const handleProfilePictureChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+    
+        // Show local preview while uploading
+        const localImageUrl = URL.createObjectURL(file);
+        setImageUrl(localImageUrl);
+    
+        // Prepare form data for the API request
+        const formData = new FormData();
+        formData.append('file', file);
+    
+        setUploading(true);
+        setError(null);
+    
+        try {
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+          });
+    
+          const result = await response.json();
+    
+          if (response.ok && result.success) {
+            setImageUrl(result.document.url);
+            console.log("Profile picture set to the uploaded image URL:", result.document.url);
+          } else {
+            throw new Error(result.error || 'Failed to upload image');
+          }
+          
+        } catch (err) {
+          console.error('Error uploading image:', err);
+          setError('An error occurred while uploading the image.');
+        } finally {
+          setUploading(false);
+        }
+      };
 
     const handleOverlayClick = () => {
         if (isMenuOpen) {
@@ -404,15 +440,15 @@ export default function Profile() {
                                         {isEditing ? (
                                             <div className="flex items-center gap-4">
                                                 <Avatar className="h-16 w-16 border">
-                                                    <AvatarImage src="/placeholder-user.jpg" />
+                                                    <AvatarImage src={imageUrl} />
                                                     <AvatarFallback>JP</AvatarFallback>
                                                 </Avatar>
-                                                <Input id="profilePicture" type="file" accept="image/*" onChange={handleProfilePictureChange} />
+                                                <Input id="profilePicture" type="file" accept="image/*" onChange={handleProfilePictureChange} disabled={uploading}/>
                                             </div>
                                         ) : (
                                             <div className="flex items-center gap-4">
                                                 <Avatar className="h-16 w-16 border">
-                                                    <AvatarImage src="/placeholder-user.jpg" />
+                                                    <AvatarImage src={imageUrl} />
                                                     <AvatarFallback>JP</AvatarFallback>
                                                 </Avatar>
                                                 <div className="font-medium">Profile Picture</div>
