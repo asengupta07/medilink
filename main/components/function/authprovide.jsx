@@ -23,9 +23,7 @@ export default function Authprovide() {
     name: "",
     phone: "",
     address: "",
-    type: "",
-    latitude: "",
-    longitude: ""
+    type: ""
   })
 
   const handleSubmit = async (event) => {
@@ -33,7 +31,22 @@ export default function Authprovide() {
     if (isLogin) {
       await handleLogin()
     } else if (registerStep === 2) {
-      await handleRegister()
+      // Fetch user's current location
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const latitude = position.coords.latitude
+        const longitude = position.coords.longitude
+
+        // Add latitude and longitude to formData
+        const updatedFormData = {
+          ...formData,
+          latitude,
+          longitude,
+        }
+        
+        await handleRegister(updatedFormData)
+      }, (error) => {
+        console.error("Error fetching location:", error)
+      })
     }
     setIsOpen(false)
   }
@@ -59,23 +72,14 @@ export default function Authprovide() {
     }
   }
 
-  const handleRegister = async () => {
+  const handleRegister = async (updatedFormData) => {
     try {
       const response = await fetch("pharmacy/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          address: formData.address,
-          password: formData.password,
-          type: formData.type,
-          latitude: formData.latitude,
-          longitude: formData.longitude,
-        }),
+        body: JSON.stringify(updatedFormData),
       })
       const data = await response.json()
       const token = data.token
@@ -181,14 +185,7 @@ export default function Authprovide() {
                         </SelectContent>
                       </Select>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="latitude">Latitude</Label>
-                      <Input id="latitude" type="number" step="any" placeholder="Enter latitude" required value={formData.latitude} onChange={handleInputChange} />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="longitude">Longitude</Label>
-                      <Input id="longitude" type="number" step="any" placeholder="Enter longitude" required value={formData.longitude} onChange={handleInputChange} />
-                    </div>
+                    {/* Removed Latitude and Longitude fields */}
                   </>
                 )}
               </CardContent>
