@@ -105,6 +105,7 @@ export default function Authprovide() {
   }
 
   return (
+<<<<<<< Updated upstream
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Are you a provider?</Button>
@@ -130,6 +131,34 @@ export default function Authprovide() {
                 />
                 <Label htmlFor="form-type">{isLogin ? "Login" : "Register"}</Label>
               </div>
+=======
+    <div className="bg-transparent ml-2'">
+      <Dialog open={isOpen} onOpenChange={setIsOpen} className='bg-transparent'>
+        <DialogTrigger asChild>
+          <Button variant="outline" className='text-white bg-black hover:bg-gray-800' ml-2>Are you a provider?</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <Card className="w-full border-0 shadow-none">
+            <CardHeader className="px-0 pt-0">
+              <CardTitle className="text-2xl">{isLogin ? "Login" : `Register - Step ${registerStep}`}</CardTitle>
+              <CardDescription>
+                {isLogin ? "Enter your credentials to login" : "Create a new account"}
+              </CardDescription>
+            </CardHeader>
+            <form onSubmit={handleSubmit} className="flex flex-col">
+              <CardContent className="space-y-4 px-0">
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="form-type"
+                    checked={isLogin}
+                    onCheckedChange={(checked) => {
+                      setIsLogin(checked)
+                      setRegisterStep(1)
+                    }}
+                  />
+                  <Label htmlFor="form-type">{isLogin ? "Login" : "Register"}</Label>
+                </div>
+>>>>>>> Stashed changes
 
               {isLogin ? (
                 <>
