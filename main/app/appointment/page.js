@@ -256,7 +256,7 @@ export default function Appointment() {
       const result = await response.json()
 
       if (response.ok)
-        alert('Astagfirullah!!! Great Success!!')
+        alert('Appointment booked successfully!')
       
     } catch (error) {
       console.error('Error booking appointment:', error)
