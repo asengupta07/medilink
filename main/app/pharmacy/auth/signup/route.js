@@ -17,9 +17,9 @@ async function posthandler(req) {
         return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
     }
 
-    const { name, email, password, type, latitude, longitude } = body;
+    const { name, email, phone, password, type, address, latitude, longitude } = body;
 
-    if (!name || !email || !password || !type || !latitude || !longitude) {
+    if (!name || !email || !phone || !password || !type || !address || latitude === undefined || longitude === undefined) {
         return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -34,7 +34,21 @@ async function posthandler(req) {
             return NextResponse.json({ error: "Provider already exists" }, { status: 400 });
         }
 
-        const provider = new Provider({ name, email, password: hashedPassword, type, latitude, longitude });
+        const location = {
+            type: "Point",
+            coordinates: [longitude, latitude]
+        };
+
+        const provider = new Provider({
+            name,
+            email,
+            phone,
+            password: hashedPassword,
+            type,
+            address,
+            location
+        });
+
         await provider.save();
 
         const rating = new Rating({ providerId: provider._id, rating: 0 });
@@ -43,8 +57,7 @@ async function posthandler(req) {
         const token = jwt.sign({ providerId: provider._id }, secretKey, { expiresIn: "30d" });
 
         return NextResponse.json({ token }, { status: 200 });
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Error saving provider", error);
         return NextResponse.json({ error: "Failed to register provider" }, { status: 500 });
     }

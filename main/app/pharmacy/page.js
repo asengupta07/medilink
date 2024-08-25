@@ -24,7 +24,7 @@ export default function Dashboard() {
                                 </div>
                             </CardContent>
                             <CardFooter className="text-primary hover:text-accent text-sm sm:text-base max-w-fit">
-                                <Link href="#" prefetch={false}>View All Orders</Link>
+                                <Link href="/pharmacy/allorders" prefetch={false}>View All Orders</Link>
                             </CardFooter>
                         </Card>
 
@@ -40,7 +40,7 @@ export default function Dashboard() {
                                 </div>
                             </CardContent>
                             <CardFooter className="text-primary hover:text-accent text-sm sm:text-base max-w-fit">
-                                <Link href="#" prefetch={false}>Process New Orders</Link>
+                                <Link href="/pharmacy/orders" prefetch={false}>Process New Orders</Link>
                             </CardFooter>
                         </Card>
 
@@ -56,7 +56,7 @@ export default function Dashboard() {
                                 </div>
                             </CardContent>
                             <CardFooter className="text-primary hover:text-accent text-sm sm:text-base max-w-fit">
-                                <Link href="#" prefetch={false}>View Revenue Details</Link>
+                                <Link href="/pharmacy/revenue" prefetch={false}>View Revenue Details</Link>
                             </CardFooter>
                         </Card>
 
@@ -72,7 +72,7 @@ export default function Dashboard() {
                                 </div>
                             </CardContent>
                             <CardFooter className="text-primary hover:text-accent text-sm sm:text-base max-w-fit">
-                                <Link href="#" prefetch={false}>View Inventory Alerts</Link>
+                                <Link href="/pharmacy/inventory" prefetch={false}>View Inventory Alerts</Link>
                             </CardFooter>
                         </Card>
 

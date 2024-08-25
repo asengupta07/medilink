@@ -5,19 +5,19 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import ThemeSwitcher from "../theme/ThemeSwitcher"
-import { useAuth } from "@/app/_contexts/authContext"
+import { usePharmAuth } from "@/app/_contexts/pharmauthContext"
 import { useRouter } from "next/navigation"
 import { PiPrescription } from "react-icons/pi"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function Component() {
   const router = useRouter()
-  const { token, logout } = useAuth()
+  const { token, logout } = usePharmAuth()
   const [name, setName] = useState('')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const getName = async () => {
-    const res = await fetch("/api/getName", {
+    const res = await fetch("pharmacy/api/getName", {
       method: "GET",
       headers: {
         Authorization: token
