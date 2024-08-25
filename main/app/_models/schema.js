@@ -450,6 +450,15 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        required: true,
+        enum: ['Processing', 'Completed', 'Cancelled', 'New']
+    },
+    hasPrescription: {
+        type: Boolean,
+        required: true
+    },
     cart: [
         {
             medicineId: {
