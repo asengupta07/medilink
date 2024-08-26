@@ -1,2 +1,2 @@
 # medilink
-This is our project for Status code 1
+This is our project for Statuscode 1
