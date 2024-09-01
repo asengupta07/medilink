@@ -23,6 +23,13 @@ HOW TO USE:
    https://medilink-web.vercel.app/
 
 2. You can clone our github repository into your local machine, open the root folder on VSCode and use the following commands:
+
+   i. Cloning the repo:
+   Go to your terminal and paste the following code:
+   `git clone https://github.com/asengupta07/medilink`
+
+   ii. Navigate to the newly created medilink folder and use the following commands one after the other:
+
    ```
    cd main
    npm i
