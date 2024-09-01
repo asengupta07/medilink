@@ -25,7 +25,7 @@ HOW TO USE:
 2. You can clone our github repository into your local machine, open the root folder on VSCode and use the following commands:
 
    i. Cloning the repo:
-   Go to your terminal and paste the following code:
+   Go to your terminal and paste the following command:
 
    ```
    git clone https://github.com/asengupta07/medilink
