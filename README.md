@@ -26,6 +26,7 @@ HOW TO USE:
 
    i. Cloning the repo:
    Go to your terminal and paste the following code:
+
    `git clone https://github.com/asengupta07/medilink`
 
    ii. Navigate to the newly created medilink folder and use the following commands one after the other:
