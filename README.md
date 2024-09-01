@@ -23,6 +23,8 @@ HOW TO USE:
    https://medilink-web.vercel.app/
 
 2. You can clone our github repository into your local machine, open the root folder on VSCode and use the following commands:
+   ```
    cd main
    npm i
    npm run dev
+   ```
