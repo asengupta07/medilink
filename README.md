@@ -22,7 +22,7 @@ HOW TO USE:
 1. You can access our website either from our Vercel link:
    https://medilink-web.vercel.app/
 
-2. You can clone our github repository into your local machine, open the root folder on VSCode and use the following commands:
+2. You can clone our github repository into your local machine, open the root folder on VSCode and run the following commands:
 
    i. Cloning the repo:
    Go to your terminal and paste the following command:
@@ -31,7 +31,7 @@ HOW TO USE:
    git clone https://github.com/asengupta07/medilink
    ```
 
-   ii. Navigate to the newly created medilink folder and use the following commands one after the other:
+   ii. Navigate to the newly created medilink folder and run the following commands:
 
    ```
    cd main
